@@ -4,7 +4,8 @@ class Ndjbdns < Formula
   url "http://pjp.dgplug.org/djbdns/ndjbdns-1.06.tar.gz"
   sha256 "5ce5a7c5031f220a85fc8bca903f2d3cf484ff77e4c85e7144a0e2a5922a1127"
   
-  #depends_on "gcc" # formula: gcc, version: 5
+  #depends_on "gcc" => :build
+  depends_on "autoconf"
   depends_on "automake"
 
   patch :DATA
@@ -27,9 +28,13 @@ class Ndjbdns < Formula
   end
 
   test do
-    #system "#{bin}/dnscache"
-    system "dnsip localhostm"
+    # would need to run a server process in the background
+    #system "#{bin}/dnscache -P 1053"
+    system "dnsip localhost"
   end
+
+  conflicts_with 'djbdns',
+    :because => 'both install the same binaries'
 
 end
 
