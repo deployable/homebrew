@@ -1,13 +1,13 @@
 class Ndjbdns < Formula
-  desc "N-DJBDNS is a brand new release of the DJBDNS."
+  desc "N-DJBDNS is a brand new release of DJBDNS."
   homepage "http://pjp.dgplug.org/djbdns/"
   url "http://pjp.dgplug.org/djbdns/ndjbdns-1.06.tar.gz"
   sha256 "5ce5a7c5031f220a85fc8bca903f2d3cf484ff77e4c85e7144a0e2a5922a1127"
   
-  #depends_on "gcc" => :build
   depends_on "autoconf"
   depends_on "automake"
 
+  # Patch while waiting upstream to fix: https://github.com/pjps/ndjbdns/issues/17
   patch :DATA
 
   def install
@@ -39,6 +39,7 @@ class Ndjbdns < Formula
 end
 
 
+# Patch while waiting upstream to fix: https://github.com/pjps/ndjbdns/issues/17
 __END__
 diff --git a/common.c b/common.c
 index 670c9bb..fbf4a1f 100644
